@@ -1,0 +1,9 @@
+{
+  "scenes": [
+    {
+      "id": "demo-apartment",
+      "name": "Demo Apartment (synthetic test scene)",
+      "description": "Procedurally generated three-room apartment used to develop and test the viewer before real captures exist."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Node
+node_modules/
+web/dist/
+
+# Pipeline working data (large, regenerable)
+work/
+captures/
+*.mp4
+*.mov
+!test/sample_data/**/*.mp4
+
+# Raw splat exports (we commit only the compressed scene files)
+*.ply
+!test/sample_data/**/*.ply
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
