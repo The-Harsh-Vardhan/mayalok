@@ -1,12 +1,12 @@
 # Mayalok: Additional Links and Prototypes
 
-**Techfest 2026-27, IIT Bombay | Techfest Namma Space challenge, Round 1** | **[Team ID: ____]**
+**Techfest 2026-27, IIT Bombay | Techfest Namma Space challenge, Round 1** | **Team QWERTY | Team ID: TM-E434D6B6C8 | Competition ID: NAMM-0B0BD6B7353A**
 
 | Item | Link |
 |---|---|
-| Web Viewer (free-roaming, zero-install) | https://mayalok.vercel.app (TBD, confirm before submission) |
+| Web Viewer (free-roaming, zero-install) | https://mayalok.vercel.app |
 | Code Repository (setup instructions + sample data in test directory) | https://github.com/The-Harsh-Vardhan/mayalok |
-| Demonstration Video (3-5 min) | [DEMO_VIDEO_URL_HERE] |
+| Demonstration Video (3-5 min) | https://drive.google.com/drive/folders/1WCjbi_mW7XuZ-mro3M7htlzlXYKzRQZr (Mayalok_Demo.mp4) |
 
 ## How to use the web viewer
 - Open the Web Viewer link in a desktop browser (WebGL2). Click the scene to capture the mouse.

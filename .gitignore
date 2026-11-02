@@ -31,3 +31,4 @@ capture_raw/
 .env*
 !.env.example
 briefs/
+submission_drive/

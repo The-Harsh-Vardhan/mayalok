@@ -1,6 +1,6 @@
 # Mayalok: Round 2 Technical Note (POIs and Navigation)
 
-**Techfest 2026-27, IIT Bombay | Round 2: POIs & Navigation** | **[Team ID: ____]**
+**Techfest 2026-27, IIT Bombay | Round 2: POIs & Navigation** | **Team QWERTY | Team ID: TM-E434D6B6C8 | Competition ID: NAMM-0B0BD6B7353A**
 
 This note describes only what is implemented in the repository (`web/src`, `pipeline/namma/navgrid.py`). Items we could not confirm from code are marked **(unknown)**.
 

@@ -1,7 +1,7 @@
 # Mayalok: Smartphone-to-Web 3D Digital Twin Pipeline
 
 **Techfest 2026-27, IIT Bombay | Techfest Namma Space challenge, Round 1: 3D Reconstruction & Roaming**
-**[Team ID: ____]**
+**Team QWERTY | Team ID: TM-E434D6B6C8 | Competition ID: NAMM-0B0BD6B7353A**
 
 ## 1. Abstract
 
