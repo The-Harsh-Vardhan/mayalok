@@ -15,29 +15,29 @@
   },
   "bounds": {
     "min": [
-      -1.1160000562667847,
-      -0.1720000058412552,
-      -4.5229997634887695
+      -1.13100004196167,
+      -0.4740000069141388,
+      -4.428999900817871
     ],
     "max": [
-      1.8760000467300415,
-      1.5800000429153442,
-      1.3380000591278076
+      1.9390000104904175,
+      1.3270000219345093,
+      1.3450000286102295
     ]
   },
   "minimap": {
     "origin": [
-      -1.6485,
-      -5.2647
+      -1.6517,
+      -5.4501
     ],
     "metersPerPixel": 0.025
   },
   "eyeHeight": 1.6,
   "spawn": {
     "position": [
-      -0.423,
+      -0.577,
       0.0,
-      1.86
+      1.525
     ],
     "yaw": 0.6373
   },
@@ -306,28 +306,28 @@
   ],
   "stats": {
     "clean": {
-      "input": 139825,
+      "input": 430487,
       "removed_non_finite": 0,
-      "removed_transparent": 54327,
-      "removed_oversized": 191,
-      "removed_outside_bounds": 6530,
-      "removed_isolated": 1239,
-      "output": 77538,
-      "floor_offset_m": 0.0
+      "removed_transparent": 221679,
+      "removed_oversized": 230,
+      "removed_outside_bounds": 14406,
+      "removed_isolated": 2794,
+      "output": 191378,
+      "floor_offset_m": 0.285
     },
     "navgrid": {
-      "rows": 143,
-      "cols": 83,
+      "rows": 140,
+      "cols": 95,
       "resolution_m": 0.05,
-      "walkable_area_m2": 0.78,
-      "obstacle_cells": 360,
-      "floor_cells": 91
+      "walkable_area_m2": 0.71,
+      "obstacle_cells": 567,
+      "floor_cells": 138
     },
     "export": {
-      "splat_mb": 1.73,
-      "navgrid_kb": 31.8,
-      "gaussians": 77538
+      "splat_mb": 4.7,
+      "navgrid_kb": 35.7,
+      "gaussians": 191378
     },
-    "processing_seconds": 0.29
+    "processing_seconds": 1.41
   }
 }

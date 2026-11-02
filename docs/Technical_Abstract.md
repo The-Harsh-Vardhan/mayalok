@@ -83,7 +83,11 @@ Full checklist: `docs/SOP.md`.
 - Spark sorts and renders splats on the GPU, and the A* search runs off the main thread, so camera input is never blocked.
 - Keyframe selection (about 2 per second) keeps COLMAP's matching cost near-linear in capture length, and checkpointed stages avoid reprocessing.
 - Pipeline unit tests (pytest, with a synthetic apartment generator for offline tests) and web tests (A*, turn instructions, polygon maths) guard regressions.
-- Measured figures for the incubation-centre scene (registered frames, PSNR, splat count, file size, FPS) are reported by the build report and shown in the demo video: [fill in before submission].
+- Measured figures for the incubation-centre scene (single 56.8 s portrait video, laptop RTX 4050 6 GB):
+  - Keyframes: 293 extracted at 5.5 fps (1024 px); 65 registered by pycolmap SfM (largest of 7 sub-models, 6,660 points, 0.52 px mean reprojection error), SfM ~155 s on CPU.
+  - Training: Brush 3DGS, 20,000 steps on the laptop GPU; 430,487 raw Gaussians.
+  - Cleaning: 191,378 Gaussians kept after floater/transparency/bounds filtering; web bundle `scene.spz` 4.7 MB, navgrid 35.7 KB, packaging 9 s.
+- Honest assessment: the low-texture interior and fast pans meant only 22% of frames registered, so the Round 1 scene covers part of the room and metric scale comes from the phone-height assumption (no ArUco markers in this capture). The revised SOP (slower pans, more overlap, printed markers) addresses this for the next capture.
 
 ## 7. Limitations and Future Work
 
