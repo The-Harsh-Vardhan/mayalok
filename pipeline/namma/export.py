@@ -25,7 +25,7 @@ def find_splat_transform() -> list[str]:
     if exe:
         return [exe]
     if shutil.which("npx"):
-        return ["npx", "--yes", "@playcanvas/splat-transform@3.10.1"]
+        return [shutil.which("npx"), "--yes", "@playcanvas/splat-transform@3.10.1"]
     raise FileNotFoundError("splat-transform not found: npm install -g @playcanvas/splat-transform@3.10.1")
 
 

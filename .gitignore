@@ -25,3 +25,8 @@ captures/
 .DS_Store
 .vscode/
 .idea/
+capture_raw/
+.remember/
+.vercel/
+.env*
+!.env.example
