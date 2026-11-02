@@ -4,8 +4,8 @@
 
 | Item | Link |
 |---|---|
-| Web Viewer (free-roaming, zero-install) | [WEB_VIEWER_URL_HERE] |
-| Code Repository (setup instructions + sample data in test directory) | [CODE_REPO_URL_HERE] |
+| Web Viewer (free-roaming, zero-install) | https://the-harsh-vardhan.github.io/namma-space/ |
+| Code Repository (setup instructions + sample data in test directory) | https://github.com/The-Harsh-Vardhan/namma-space |
 | Demonstration Video (3-5 min) | [DEMO_VIDEO_URL_HERE] |
 
 ## How to use the web viewer
