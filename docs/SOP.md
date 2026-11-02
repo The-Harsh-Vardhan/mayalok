@@ -1,4 +1,4 @@
-# Namma Space: Capture SOP (Standard Operating Procedure)
+# Mayalok: Capture SOP (Standard Operating Procedure)
 
 **Goal:** a non-technical person captures an indoor space with only a smartphone, and the pipeline (`namma build`) turns it into a metric-scale 3D Gaussian Splat with a walkable navigation grid.
 **Inputs accepted:** videos (`.mp4 .mov .m4v .mkv .3gp ...`) and/or photos (`.jpg .png`) in one folder; many clips of the same space are merged automatically.

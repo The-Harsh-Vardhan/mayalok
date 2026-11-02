@@ -35,7 +35,7 @@
   "eyeHeight": 1.6,
   "spawn": {
     "position": [
-      -0.577,
+      -0.327,
       0.0,
       1.525
     ],
@@ -319,7 +319,7 @@
       "rows": 140,
       "cols": 95,
       "resolution_m": 0.05,
-      "walkable_area_m2": 0.71,
+      "walkable_area_m2": 2.66,
       "obstacle_cells": 567,
       "floor_cells": 138
     },
@@ -328,6 +328,6 @@
       "navgrid_kb": 35.7,
       "gaussians": 191378
     },
-    "processing_seconds": 1.41
+    "processing_seconds": 0.9
   }
 }

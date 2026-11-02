@@ -1,11 +1,11 @@
-# Namma Space: Smartphone-to-Web 3D Digital Twin Pipeline
+# Mayalok: Smartphone-to-Web 3D Digital Twin Pipeline
 
-**Techfest 2026-27, IIT Bombay | Round 1: 3D Reconstruction & Roaming**
+**Techfest 2026-27, IIT Bombay | Techfest Namma Space challenge, Round 1: 3D Reconstruction & Roaming**
 **[Team ID: ____]**
 
 ## 1. Abstract
 
-Namma Space is an automated pipeline that turns ordinary smartphone videos and photos of an indoor space into a photorealistic, metric-scale 3D Gaussian Splat and serves it as a zero-install first-person web walkthrough. A user follows a short capture SOP; one command (`namma build`) then extracts sharp keyframes, recovers camera poses with COLMAP, fixes metric scale and gravity using printed ArUco markers or a fixed phone-height rule, trains a 3D Gaussian Splatting model with gsplat, cleans it, and derives a 5 cm walkable occupancy grid and minimap. The result is packaged as a compressed `.spz` splat plus a scene manifest and rendered in the browser with React, Three.js and Spark.js. Round 1 deliverables (SOP, reconstruction, free roaming) were exercised on a real site, an incubation centre, captured on 24 Oct 2026 with 8 smartphone videos and about 40 photos. The same grid also powers POI search and A* routing already present in the viewer, which are the Round 2 deliverables.
+Mayalok is an automated pipeline that turns ordinary smartphone videos and photos of an indoor space into a photorealistic, metric-scale 3D Gaussian Splat and serves it as a zero-install first-person web walkthrough. A user follows a short capture SOP; one command (`namma build`) then extracts sharp keyframes, recovers camera poses with COLMAP, fixes metric scale and gravity using printed ArUco markers or a fixed phone-height rule, trains a 3D Gaussian Splatting model with gsplat, cleans it, and derives a 5 cm walkable occupancy grid and minimap. The result is packaged as a compressed `.spz` splat plus a scene manifest and rendered in the browser with React, Three.js and Spark.js. Round 1 deliverables (SOP, reconstruction, free roaming) were exercised on a real site, an incubation centre, captured on 24 Oct 2026 with 8 smartphone videos and about 40 photos. The same grid also powers POI search and A* routing already present in the viewer, which are the Round 2 deliverables.
 
 ## 2. System Architecture
 

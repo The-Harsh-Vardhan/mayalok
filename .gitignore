@@ -30,3 +30,4 @@ capture_raw/
 .vercel/
 .env*
 !.env.example
+briefs/

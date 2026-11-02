@@ -1,11 +1,11 @@
-# Namma Space: Additional Links and Prototypes
+# Mayalok: Additional Links and Prototypes
 
-**Techfest 2026-27, IIT Bombay | Round 1** | **[Team ID: ____]**
+**Techfest 2026-27, IIT Bombay | Techfest Namma Space challenge, Round 1** | **[Team ID: ____]**
 
 | Item | Link |
 |---|---|
-| Web Viewer (free-roaming, zero-install) | https://the-harsh-vardhan.github.io/namma-space/ |
-| Code Repository (setup instructions + sample data in test directory) | https://github.com/The-Harsh-Vardhan/namma-space |
+| Web Viewer (free-roaming, zero-install) | https://mayalok.vercel.app (TBD, confirm before submission) |
+| Code Repository (setup instructions + sample data in test directory) | https://github.com/The-Harsh-Vardhan/mayalok |
 | Demonstration Video (3-5 min) | [DEMO_VIDEO_URL_HERE] |
 
 ## How to use the web viewer

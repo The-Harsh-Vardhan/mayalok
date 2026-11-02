@@ -1,15 +1,15 @@
 {
   "stages": {
     "clean": {
-      "seconds": 1.36,
+      "seconds": 0.86,
       "status": "ok"
     },
     "navgrid": {
-      "seconds": 0.05,
+      "seconds": 0.04,
       "status": "ok"
     },
     "export": {
-      "seconds": 7.35,
+      "seconds": 6.14,
       "status": "ok"
     }
   },
@@ -28,7 +28,7 @@
       "rows": 140,
       "cols": 95,
       "resolution_m": 0.05,
-      "walkable_area_m2": 0.71,
+      "walkable_area_m2": 2.66,
       "obstacle_cells": 567,
       "floor_cells": 138
     },
@@ -38,5 +38,5 @@
       "gaussians": 191378
     }
   },
-  "total_seconds": 8.76
+  "total_seconds": 7.04
 }

@@ -9,7 +9,7 @@ export function LoadingScreen({ stage, loaded, total, error }: LoadingProps) {
   const pct = total > 0 ? Math.min(100, (loaded / total) * 100) : null;
   return (
     <div className="loading" role="status" aria-live="polite">
-      <div className="brand brand-large"><span className="brand-pin" aria-hidden />Namma Space</div>
+      <div className="brand brand-large"><span className="brand-pin" aria-hidden />Mayalok</div>
       {error ? (
         <p className="loading-error">{error}</p>
       ) : (

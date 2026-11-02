@@ -1,173 +1,99 @@
-# Namma Space 🌐🧭
+# Mayalok
 
-> **Turn ordinary smartphone captures into photorealistic, interactive 3D digital twins with indoor navigation and spatial search.**
+*Formerly Namma Space.*
 
-Namma Space is an end-to-end spatial computing engine designed for large indoor environments (retail stores, malls, corporate offices, campuses, and event centers). It reconstructs spaces from video or photos into lightweight 3D Gaussian Splats (`.spz`), extracts 2D/3D walkable occupancy grids, and delivers an interactive browser-based first-person digital twin with turn-by-turn walking guidance around obstacles.
+**Turn a smartphone walkthrough into a photorealistic, searchable 3D digital twin of an indoor space, with obstacle-aware walking directions in the browser.**
 
----
+Live demo: https://mayalok.vercel.app (TBD, pending first deploy)
 
-## ✨ Features
+Mayalok reconstructs a venue from ordinary phone video into a 3D Gaussian Splat (`.spz`), derives a walkable occupancy grid from it, and ships a React + Three.js viewer where you can walk around, search for places, and follow a routed path to them.
 
-- **📱 Smartphone-Only Capture**: Walk through any space with an ordinary smartphone camera. No expensive LiDAR rigs or manual CAD modeling required.
-- **⚡ Photorealistic 3D Gaussian Splats**: High-performance rasterization using modern 3DGS (`.spz` compressed format) powered by [Spark.js](https://github.com/sparkjsdev/spark) and Three.js.
-- **📐 Metric Scale & Gravity Alignment**: Automatic upright coordinate alignment and metric scale calibration via printed ArUco markers or standard phone capture height SOP.
-- **🗺️ Automated NavGrid & Minimap**: Point cloud floor slicing and obstacle detection to produce navigable 2D grids and top-down minimaps.
-- **🧭 Intelligent Indoor Pathfinding**: Real-time A* path planning running off-thread in a Web Worker, routing around walls, tables, and partitions with turn-by-turn voice/visual directions.
-- **🔍 Spatial POI Search & Admin Mode**: Fast fuzzy search (Fuse.js) across rooms, items, and amenities with interactive 3D tags, zone polygons, and admin editing tools.
-- **🚶 Autopilot Walkthrough**: Click any Point of Interest or search result to automatically fly or walk smoothly to the destination.
+## Features
 
----
+- **Smartphone-only capture.** No LiDAR or CAD. Metric scale comes from the phone-height SOP or printed ArUco markers.
+- **Photorealistic splats.** Rendered with [Spark.js](https://github.com/sparkjsdev/spark) on Three.js.
+- **Spatial indexing and POI tagging.** Places (rooms, items, amenities) are stored as 3D tags with optional floor-plan zone polygons. Admin mode (`?admin`) adds, edits and draws them, with JSON import/export.
+- **Pathfinding.** A* over the occupancy grid in a Web Worker, with path smoothing, turn-by-turn instructions and automatic re-routing when you leave the route.
+- **Search UI.** Fuzzy search (Fuse.js) over POIs; picking a result shows its card, a route, and an optional autopilot walk to the destination. Deep link with `?to=<poi id or name>`.
+- **Minimap and scene switcher.** Top-down map with player, POIs and route; switch scenes from the top bar or with `?scene=<id>`.
 
-## 🏗️ Architecture
+## Quick start
 
-```
-                 [ Smartphone Capture (Video/Photos) ]
-                                  │
-                                  ▼
-                     [ Keyframe Extraction (namma.frames) ]
-                                  │
-                                  ▼
-                   [ Structure-from-Motion (COLMAP) ]
-                                  │
-                                  ▼
-             [ Metric Scaling & Gravity Alignment (namma.align) ]
-                                  │
-                                  ▼
-             [ 3D Gaussian Splat Training (gsplat / simple_trainer) ]
-                                  │
-                                  ▼
-           [ Splat Cleaning & Ground Plane Leveling (namma.clean) ]
-                                  │
-                                  ▼
-             [ 2D Occupancy NavGrid & Minimap (namma.navgrid) ]
-                                  │
-                                  ▼
-             [ Web Packaging (.spz + navgrid + scene metadata) ]
-                                  │
-                                  ▼
-             [ Web Client: Three.js + Spark.js + React Viewer ]
-```
+### Web viewer
 
----
+Requires Node 20+.
 
-## 📁 Repository Structure
-
-```
-.
-├── pipeline/                 # Python backend processing pipeline
-│   ├── namma/
-│   │   ├── align.py          # Gravity alignment & metric scaling (ArUco / SOP)
-│   │   ├── clean.py          # Splat outlier cleaning & floor leveling
-│   │   ├── cli.py            # CLI entry point (`namma build`, `process-splat`, etc.)
-│   │   ├── export.py         # Web bundle exporter & scene manifest writer
-│   │   ├── frames.py         # Video keyframe extraction & deduplication
-│   │   ├── markers.py        # ArUco marker detection & 3D pose solving
-│   │   ├── navgrid.py        # Obstacle slicing, 2D occupancy grid & minimap generator
-│   │   ├── pipeline.py       # Multi-stage orchestrator with checkpoint resumption
-│   │   ├── report.py         # Build metrics and telemetry logger
-│   │   ├── sfm.py            # COLMAP feature extraction, matching & mapping
-│   │   ├── splats.py         # PLY reader/writer & format conversion
-│   │   ├── synthetic.py      # Procedural apartment generator for offline testing
-│   │   └── train.py          # gsplat trainer wrapper
-│   ├── pyproject.toml        # Python package configuration
-│   └── tests/                # Unit & integration test suite
-│
-└── web/                      # React + Three.js interactive digital twin viewer
-    ├── public/
-    │   └── scenes/           # Packaged scenes (includes demo-apartment)
-    ├── src/
-    │   ├── engine/           # 3DGS viewer, first-person player controls, POI/path layers
-    │   ├── lib/              # A* search, geometry math, scene loader, fuzzy search
-    │   ├── ui/               # Minimap, Navigation HUD, Search Bar, POI Card, Admin UI
-    │   ├── App.tsx           # Main application container
-    │   └── main.tsx          # React entry point
-    ├── package.json
-    └── vite.config.ts
-```
-
----
-
-## 🚀 Getting Started
-
-### 1. Web Application
-
-#### Prerequisites
-- Node.js (v18+)
-- npm or pnpm
-
-#### Run Locally
 ```bash
 cd web
 npm install
-npm run dev
+npm run dev        # http://localhost:5173
 ```
 
-Visit `http://localhost:5173` to explore the included `demo-apartment` digital twin.
+Controls: `WASD` walk, drag or `L` to look, `N` noclip, `G` route to selected place, `F` toggle autopilot, `X` stop, `M` expand map, `P` all places, `H` help. Add `?admin` to edit places and `?stats` for an FPS panel.
 
-#### Key Controls
-- **W / A / S / D**: Walk around
-- **Mouse Drag / Pointer Lock**: Look around
-- **Space / C**: Ascend / Descend (noclip mode)
-- **Search Bar (`/`)**: Find points of interest (e.g., "bed", "kitchen", "sofa")
-- **Click on Minimap / Scene**: Set custom navigation waypoint
-- **Admin Mode**: Add `?admin` to the URL to tag POIs and draw room boundaries
+### Pipeline (Python)
 
----
+Requires Python 3.10+. On Windows, using [uv](https://docs.astral.sh/uv/):
 
-### 2. Reconstruction Pipeline
-
-#### Prerequisites
-- Python 3.10+
-- [COLMAP](https://colmap.github.io/) installed with CUDA support (or CPU fallback)
-- [gsplat](https://github.com/nerfstudio-project/gsplat)
-
-#### Installation
-```bash
+```powershell
 cd pipeline
-pip install -e ".[sfm]"
+uv venv
+.venv\Scripts\activate
+uv pip install -e ".[test]"        # add ".[sfm]" for pycolmap
 ```
 
-#### Build a Scene from Video
-```bash
-namma build \
-  --input /path/to/walkthrough.mp4 \
-  --work /path/to/workdir \
-  --gsplat-dir /path/to/gsplat \
-  --out ../web/public/scenes/my-venue \
-  --name "My Venue"
-```
-
-#### Process Existing Splats
-If you already have a trained 3DGS PLY file:
-```bash
-namma process-splat \
-  --splat /path/to/point_cloud.ply \
-  --cameras /path/to/cameras.json \
-  --out ../web/public/scenes/my-venue \
-  --name "My Venue"
-```
-
-#### Generate Procedural Test Scene
-```bash
-namma synthetic --out ../web/public/scenes/demo-apartment
-```
-
----
-
-## 🧪 Testing
+Build a scene from video, or from an existing trained splat:
 
 ```bash
-# Web tests (A* pathfinding, turn instructions, polygon math)
-cd web
-npm test
+namma build --input walkthrough.mp4 --work ../work/venue --gsplat-dir /path/to/gsplat \
+  --out ../web/public/scenes/my-venue --name "My Venue"
 
-# Pipeline tests
-cd pipeline
-pytest -m "not slow"
+namma process-splat --splat point_cloud.ply --cameras cameras.json \
+  --out ../web/public/scenes/my-venue --name "My Venue"
+
+namma synthetic --out ../web/public/scenes/demo-apartment   # procedural test scene
 ```
 
----
+PLY to `.spz` conversion uses `splat-transform` via npx (no global install):
 
-## 📄 License
+```powershell
+npx -y @playcanvas/splat-transform input.ply scene.spz
+```
 
-This project is licensed under the [MIT License](LICENSE).
+Then register the scene in `web/public/scenes/index.json`.
+
+## Deploy to Vercel
+
+Import the repo, then set **Root Directory** = `web` and **Framework Preset** = `Vite`. Build command `npm run build`, output directory `dist` (the defaults). Assets use relative paths (`base: "./"`), so no further config is needed.
+
+## Scenes
+
+| Scene | Description |
+| --- | --- |
+| `incubation` | Real smartphone capture of an incubation centre (24 Oct 2026), pycolmap SfM + Brush 3DGS. Partial: 65 of 293 keyframes registered. |
+| `demo-apartment` | Procedurally generated three-room apartment for development and tests. |
+
+Each scene folder in `web/public/scenes/<id>/` holds `scene.json`, `scene.spz`, `navgrid.json`, `minimap.png`, `pois.json` and `report.json`.
+
+## Repository layout
+
+```
+pipeline/namma/   Python pipeline: frames, sfm, align, train, clean, navgrid, export, cli
+pipeline/tests/   pytest suite
+web/src/engine/   Viewer, player controls, POI and path layers
+web/src/lib/      A*, router + path worker, geometry, scene loader, search
+web/src/ui/       Search bar, POI card, nav HUD, minimap, admin tools
+web/public/scenes/ Packaged scenes and index.json
+docs/             SOP, technical abstract, briefs
+```
+
+## Testing
+
+```bash
+cd web && npm test && npm run build      # vitest (A*, turns, geometry) + typecheck + build
+cd pipeline && pytest -m "not slow"
+```
+
+## Credits and licences
+
+Code is MIT licensed (see [LICENSE](LICENSE)). Built on [Spark.js](https://github.com/sparkjsdev/spark) (MIT), [Three.js](https://threejs.org) (MIT), [React](https://react.dev) (MIT), [Fuse.js](https://www.fusejs.io) (Apache-2.0), [COLMAP](https://colmap.github.io)/pycolmap (BSD), [Brush](https://github.com/ArthurBrussee/brush) and [gsplat](https://github.com/nerfstudio-project/gsplat) (Apache-2.0), and [splat-transform](https://github.com/playcanvas/splat-transform) (MIT).

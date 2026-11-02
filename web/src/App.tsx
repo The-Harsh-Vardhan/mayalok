@@ -372,7 +372,7 @@ export default function App() {
       {data && (
         <>
           <header className="topbar">
-            <div className="brand"><span className="brand-pin" aria-hidden />Namma Space</div>
+            <div className="brand"><span className="brand-pin" aria-hidden />Mayalok</div>
             {scenes.length > 1 ? (
               <select className="scene-select" value={data.manifest.id} aria-label="Choose a space"
                 onChange={(e) => {
