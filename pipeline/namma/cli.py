@@ -17,7 +17,7 @@ def _scene_options(p: argparse.ArgumentParser) -> None:
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(prog="namma", description=__doc__)
+    parser = argparse.ArgumentParser(prog="mayalok", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
 
     build = sub.add_parser("build", help="videos/photos -> deployable scene (full pipeline)")

@@ -90,6 +90,8 @@ sequenceDiagram
     A->>P: follow path, re-route if off course
 ```
 
+More diagrams (system context, pipeline stages, runtime components, navigation sequence, scene bundle, data model): [docs/diagrams](docs/diagrams/README.md).
+
 ## Quick start
 
 ### Web viewer
@@ -145,6 +147,20 @@ npx -y @playcanvas/splat-transform input.ply scene.spz
 ```
 
 Then register the scene in `web/public/scenes/index.json`.
+
+## Install as a package
+
+The reconstruction pipeline ships as the `mayalok` Python package (CLI: `mayalok`).
+
+```bash
+pip install "mayalok[sfm]"        # once published to PyPI
+# or straight from GitHub today:
+pip install "git+https://github.com/The-Harsh-Vardhan/mayalok.git#subdirectory=pipeline"
+
+mayalok process-splat --splat point_cloud.ply --cameras cameras.json --out web/public/scenes/my-venue --name "My Venue"
+```
+
+Docs site: https://the-harsh-vardhan.github.io/mayalok/
 
 ## Docker
 

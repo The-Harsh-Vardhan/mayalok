@@ -32,3 +32,5 @@ capture_raw/
 !.env.example
 briefs/
 submission_drive/
+pipeline/dist/
+site/

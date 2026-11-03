@@ -1,0 +1,31 @@
+site_name: Mayalok
+site_description: Smartphone capture to navigable 3D digital twins, with indoor search and pathfinding.
+site_url: https://the-harsh-vardhan.github.io/mayalok/
+repo_url: https://github.com/The-Harsh-Vardhan/mayalok
+repo_name: The-Harsh-Vardhan/mayalok
+docs_dir: docs
+exclude_docs: |
+  Namma_Space.docx_2_compressed.*
+  Techfest_Namma_Space_Brief.pdf
+theme:
+  name: material
+  logo: MAYALOK Portal of Light.png
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: cyan
+  features: [navigation.instant, navigation.top, content.code.copy, search.highlight]
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - { name: mermaid, class: mermaid, format: !!python/name:pymdownx.superfences.fence_code_format }
+nav:
+  - Home: index.md
+  - Capture SOP: SOP.md
+  - Technical Abstract: Technical_Abstract.md
+  - POIs & Navigation: Round2_Technical_Note.md
+  - Demo Script: Demo_Video_Script_Round2.md
+  - Diagrams: diagrams/README.md
+  - Links: Additional_Links.md
