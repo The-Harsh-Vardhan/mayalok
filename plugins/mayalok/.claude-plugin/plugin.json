@@ -1,0 +1,13 @@
+{
+  "name": "mayalok",
+  "version": "0.2.0",
+  "description": "MCP server for Mayalok scene bundles: list scenes, find places, plan indoor routes, and process splats.",
+  "author": {
+    "name": "Team QWERTY (Ajay Yadav, Hitesh Bhatiwal, Harsh Vardhan)",
+    "url": "https://github.com/The-Harsh-Vardhan"
+  },
+  "homepage": "https://github.com/The-Harsh-Vardhan/mayalok",
+  "repository": "https://github.com/The-Harsh-Vardhan/mayalok",
+  "license": "MIT",
+  "keywords": ["gaussian-splatting", "indoor-navigation", "mcp", "digital-twin"]
+}

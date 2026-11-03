@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.The-Harsh-Vardhan/mayalok",
+  "description": "Explore Mayalok indoor 3D scenes: list scenes, fuzzy-find places, plan A* routes with turn-by-turn directions, and process splats.",
+  "repository": {
+    "url": "https://github.com/The-Harsh-Vardhan/mayalok",
+    "source": "github",
+    "subfolder": "pipeline"
+  },
+  "version": "0.2.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "mayalok",
+      "version": "0.2.0",
+      "transport": { "type": "stdio" }
+    }
+  ]
+}

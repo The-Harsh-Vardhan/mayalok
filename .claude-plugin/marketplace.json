@@ -1,0 +1,19 @@
+{
+  "name": "mayalok",
+  "description": "Mayalok: turn phone video into navigable 3D indoor scenes, and let Claude search and route through them.",
+  "owner": {
+    "name": "Team QWERTY (The-Harsh-Vardhan)",
+    "url": "https://github.com/The-Harsh-Vardhan"
+  },
+  "plugins": [
+    {
+      "name": "mayalok",
+      "source": "./plugins/mayalok",
+      "description": "MCP server for Mayalok scene bundles: list scenes, find places, plan indoor routes, and process splats.",
+      "version": "0.2.0",
+      "homepage": "https://github.com/The-Harsh-Vardhan/mayalok",
+      "license": "MIT",
+      "keywords": ["gaussian-splatting", "indoor-navigation", "mcp", "digital-twin"]
+    }
+  ]
+}

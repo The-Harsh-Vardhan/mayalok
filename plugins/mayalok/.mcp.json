@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mayalok": {
+      "command": "uvx",
+      "args": ["--from", "mayalok[mcp]", "mayalok-mcp"]
+    }
+  }
+}
