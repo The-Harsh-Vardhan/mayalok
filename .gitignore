@@ -35,3 +35,9 @@ submission_drive/
 pipeline/dist/
 site/
 docs/references/
+pipeline/build/
+docs/report/*.log
+docs/report/*.bbl
+docs/report/*.aux
+docs/report/*.blg
+docs/report/*.out
