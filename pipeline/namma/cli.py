@@ -1,4 +1,4 @@
-"""Command line entry point: `namma build`, `namma process-splat`, `namma synthetic`."""
+"""Mayalok command line: `mayalok build`, `mayalok process-splat`, `mayalok synthetic`."""
 
 from __future__ import annotations
 

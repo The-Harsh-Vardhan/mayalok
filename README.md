@@ -90,7 +90,13 @@ sequenceDiagram
     A->>P: follow path, re-route if off course
 ```
 
-More diagrams (system context, pipeline stages, runtime components, navigation sequence, scene bundle, data model): [docs/diagrams](docs/diagrams/README.md).
+### Diagrams
+
+| | |
+| :---: | :---: |
+| ![System context](docs/diagrams/system-context.svg)<br>**System context** | ![Pipeline stages](docs/diagrams/pipeline-stages.svg)<br>**Pipeline stages** |
+| ![Runtime components](docs/diagrams/runtime-components.svg)<br>**Runtime components** | ![Navigation sequence](docs/diagrams/navigation-sequence.svg)<br>**Search to route to auto-walk** |
+| ![Scene bundle](docs/diagrams/scene-bundle.svg)<br>**Scene bundle contract** | ![Data model](docs/diagrams/data-model.svg)<br>**Data model** |
 
 ## Quick start
 

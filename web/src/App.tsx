@@ -105,6 +105,7 @@ export default function App() {
         setScenes(list);
         const id = params.get("scene") ?? list[0]?.id;
         if (!id) throw new Error("No scenes found in scenes/index.json");
+        setNoclip(list.find((s) => s.id === id)?.fly === true);
         setLoading((l) => ({ ...l, stage: "Loading map and places…" }));
         const scene = await loadScene(id);
         if (cancelled) return;
