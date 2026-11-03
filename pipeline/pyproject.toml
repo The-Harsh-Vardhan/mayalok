@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mayalok"
-version = "0.1.0"
+version = "0.1.1"
 description = "Mayalok: smartphone capture -> navigable 3D Gaussian Splat digital twin pipeline"
 readme = "README.md"
 authors = [{ name = "Team QWERTY (Ajay Yadav, Hitesh Bhatiwal, Harsh Vardhan)" }]

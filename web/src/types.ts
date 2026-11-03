@@ -30,6 +30,8 @@ export interface SceneIndexEntry {
   id: string;
   name: string;
   description?: string;
+  /** Start in fly mode (collisions off), e.g. for partial scans with a patchy navgrid. */
+  fly?: boolean;
 }
 
 export interface Poi {

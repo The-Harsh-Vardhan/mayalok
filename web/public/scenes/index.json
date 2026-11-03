@@ -3,7 +3,8 @@
     {
       "id": "incubation",
       "name": "Incubation Centre (real capture, partial)",
-      "description": "Real smartphone walkthrough captured 24 Oct 2026, reconstructed with pycolmap SfM + Brush 3DGS. Partial: 65 of 293 keyframes registered; scale from phone-height SOP."
+      "description": "Real smartphone walkthrough captured 24 Oct 2026, reconstructed with pycolmap SfM + Brush 3DGS. Partial: 65 of 293 keyframes registered; scale from phone-height SOP.",
+      "fly": true
     },
     {
       "id": "demo-apartment",
