@@ -90,6 +90,8 @@ sequenceDiagram
     A->>P: follow path, re-route if off course
 ```
 
+More diagrams (system context, pipeline stages, runtime components, navigation sequence, scene bundle, data model): [docs/diagrams](docs/diagrams/README.md).
+
 ## Quick start
 
 ### Web viewer
