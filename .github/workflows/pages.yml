@@ -1,20 +1,22 @@
-name: Deploy viewer to GitHub Pages
+name: Publish docs to GitHub Pages
 on:
   push: { branches: [main] }
   workflow_dispatch:
 permissions: { contents: read, pages: write, id-token: write }
 concurrency: { group: pages, cancel-in-progress: true }
 jobs:
-  deploy:
+  docs:
     runs-on: ubuntu-latest
     environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: npm, cache-dependency-path: web/package-lock.json }
-      - run: npm ci && npm run build
-        working-directory: web
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install mkdocs-material
+      # README is the home page; its links point into docs/, so strip that prefix.
+      - run: sed -e 's#(docs/#(#g' -e 's#"docs/#"#g' README.md > docs/index.md
+      - run: mkdocs build
       - uses: actions/upload-pages-artifact@v3
-        with: { path: web/dist }
+        with: { path: site }
       - id: d
         uses: actions/deploy-pages@v4

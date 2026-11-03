@@ -3,10 +3,17 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "namma"
+name = "mayalok"
 version = "0.1.0"
-description = "Namma Space: smartphone capture -> navigable 3D digital twin pipeline"
-readme = "../README.md"
+description = "Mayalok: smartphone capture -> navigable 3D Gaussian Splat digital twin pipeline"
+readme = "README.md"
+authors = [{ name = "Team QWERTY (Ajay Yadav, Hitesh Bhatiwal, Harsh Vardhan)" }]
+keywords = ["gaussian-splatting", "3dgs", "digital-twin", "indoor-navigation", "colmap"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Image Processing",
+]
 requires-python = ">=3.10"
 license = { text = "MIT" }
 dependencies = [
@@ -21,7 +28,13 @@ dependencies = [
 sfm = ["pycolmap>=4.0"]
 test = ["pytest>=8", "pycolmap>=4.0"]
 
+[project.urls]
+Homepage = "https://the-harsh-vardhan.github.io/mayalok/"
+Source = "https://github.com/The-Harsh-Vardhan/mayalok"
+Demo = "https://mayalok.vercel.app"
+
 [project.scripts]
+mayalok = "namma.cli:main"
 namma = "namma.cli:main"
 
 [tool.setuptools.packages.find]
