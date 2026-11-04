@@ -41,7 +41,7 @@ mayalok synthetic --out ./scenes/demo-apartment
 
 ## How it works
 
-![System context](https://raw.githubusercontent.com/The-Harsh-Vardhan/mayalok/main/docs/diagrams/system-context.png)
+![System context](https://raw.githubusercontent.com/The-Harsh-Vardhan/mayalok/main/docs/diagrams/system-context-light.png)
 
 | Stage | What it does | Output |
 |---|---|---|
@@ -53,17 +53,37 @@ mayalok synthetic --out ./scenes/demo-apartment
 | navgrid | 5 cm walkable occupancy grid + minimap | `navgrid.json`, `minimap.png` |
 | export | compress splat, write manifest | `scene.spz`, `scene.json` |
 
-![Pipeline stages](https://raw.githubusercontent.com/The-Harsh-Vardhan/mayalok/main/docs/diagrams/pipeline-stages.png)
+![Pipeline stages](https://raw.githubusercontent.com/The-Harsh-Vardhan/mayalok/main/docs/diagrams/pipeline-stages-light.png)
 
 ### Scene bundle
 
-![Scene bundle](https://raw.githubusercontent.com/The-Harsh-Vardhan/mayalok/main/docs/diagrams/scene-bundle.png)
+![Scene bundle](https://raw.githubusercontent.com/The-Harsh-Vardhan/mayalok/main/docs/diagrams/scene-bundle-light.png)
 
 ### Data model
 
-![Data model](https://raw.githubusercontent.com/The-Harsh-Vardhan/mayalok/main/docs/diagrams/data-model.png)
+![Data model](https://raw.githubusercontent.com/The-Harsh-Vardhan/mayalok/main/docs/diagrams/data-model-light.png)
+
+
+## MCP server
+
+`mayalok` ships a [Model Context Protocol](https://modelcontextprotocol.io) server so AI agents can
+explore scene bundles: `list_scenes`, `scene_info`, `find_places` (fuzzy POI search), `plan_route`
+(A* over the navgrid with turn-by-turn directions), `process_splat` and `make_synthetic_scene`.
+
+```bash
+pip install "mayalok[mcp]"          # provides the `mayalok-mcp` command (stdio)
+
+# Claude Code
+claude mcp add mayalok -- uvx --from "mayalok[mcp]" mayalok-mcp
+
+# or as a plugin
+/plugin marketplace add The-Harsh-Vardhan/mayalok
+/plugin install mayalok@mayalok
+```
 
 ## Credits
 
 Built by Team QWERTY (Ajay Yadav, Hitesh Bhatiwal, Harsh Vardhan) for the Techfest 2026-27 (IIT Bombay) Namma Space challenge.
 Builds on 3D Gaussian Splatting (Kerbl et al., 2023), COLMAP, Three.js and Spark.js. MIT licence.
+
+<!-- mcp-name: io.github.The-Harsh-Vardhan/mayalok -->

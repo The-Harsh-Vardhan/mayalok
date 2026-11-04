@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mayalok"
-version = "0.1.1"
+version = "0.2.0"
 description = "Mayalok: smartphone capture -> navigable 3D Gaussian Splat digital twin pipeline"
 readme = "README.md"
 authors = [{ name = "Team QWERTY (Ajay Yadav, Hitesh Bhatiwal, Harsh Vardhan)" }]
@@ -26,7 +26,9 @@ dependencies = [
 # pycolmap is optional because Colab installs the CUDA build (pycolmap-cuda12)
 # instead, and both provide the same `pycolmap` module.
 sfm = ["pycolmap>=4.0"]
-test = ["pytest>=8", "pycolmap>=4.0"]
+# Model Context Protocol server: `mayalok-mcp` (pip install "mayalok[mcp]").
+mcp = ["mcp>=1.2"]
+test = ["pytest>=8", "pycolmap>=4.0", "mcp>=1.2"]
 
 [project.urls]
 Homepage = "https://the-harsh-vardhan.github.io/mayalok/"
@@ -36,6 +38,7 @@ Demo = "https://mayalok.vercel.app"
 [project.scripts]
 mayalok = "namma.cli:main"
 namma = "namma.cli:main"
+mayalok-mcp = "namma.mcp_server:main"
 
 [tool.setuptools.packages.find]
 include = ["namma*"]
