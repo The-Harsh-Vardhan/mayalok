@@ -38,6 +38,12 @@ def convert_splat(src_ply: Path, dst: Path, sh_bands: int | None = None) -> None
     if str(dst).endswith(".spz"):
         # splat-transform defaults to SPZ v4 (no gzip wrapper); Spark 2.3 reads only v2/v3.
         cmd += ["--spz-version", "3"]
+    # On Windows, npx and npm-installed splat-transform are .cmd shims run through cmd.exe, which
+    # would interpret these characters in a path as extra commands.
+    if cmd[0].lower().endswith((".cmd", ".bat")):
+        bad = [p for p in (str(src_ply), str(dst)) if any(ch in p for ch in '&|<>^%"()!')]
+        if bad:
+            raise ValueError(f"path has characters cmd.exe treats as commands; rename it: {bad[0]}")
     print("[export]", " ".join(cmd), flush=True)
     subprocess.run(cmd, check=True)
 
