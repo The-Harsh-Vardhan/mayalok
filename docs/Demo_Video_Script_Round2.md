@@ -1,20 +1,35 @@
-# Mayalok: Round 2 Demo Video Script (target about 4:40, limit 3 to 5 min)
+# Mayalok: Round 2 Demo Shot List (target 4:15, limit 3 to 5 min)
 
-**Setup before recording:** desktop Chrome/Edge, 1080p screen capture, mic on. Open the viewer at `?scene=demo-apartment` (it has 10 POIs; the `incubation` scene has none yet, so use it only for the closing shot unless its POIs are added). Clear any saved edits (Admin > Reset). Dismiss the help overlay (`H`). Start the player in the Living Room.
+**Story:** a broker lets a buyer or renter explore a flat instead of scrolling through photos. Open and close on that. Show our own captured data, not only the synthetic apartment.
 
-| Time | Screen / clicks | Narration |
+**Truthfulness rules (say these, do not hide them)**
+- Scale is estimated from an assumed phone height (1.35 m camera height for the house), not measured.
+- Incubation scene is partial (65 of 293 keyframes registered). House scene is a test capture and is still being retrained; say "early capture".
+- The synthetic Demo Apartment is a test scene, label it as such on camera.
+- Navigation is a single-floor 2D grid. No performance numbers unless read live from the stats panel (`I`).
+- Do not say "photorealistic" for the real captures; say "reconstructed from our phone video".
+
+## Shot list
+
+| Time | Screen | Narration |
 |---|---|---|
-| 0:00-0:20 | Title card "Mayalok", then the viewer loading and the apartment appearing. | "This is Mayalok. In Round 1 we turned smartphone video into a walkable 3D Gaussian Splat. Round 2 adds points of interest, search and obstacle-aware navigation on top of that same scene." |
-| 0:20-0:50 | Walk with WASD and mouse around the Living Room. Point out floating labels, their fade with distance and dimming behind walls. Show the minimap (bottom corner). | "Every place is a POI anchored in metric 3D coordinates. Labels stay crisp, fade with distance, and dim when a wall blocks the view, using the same walkable grid that powers routing." |
-| 0:50-1:25 | Hover then click the "Kitchen" label: floor zone lights up, panel opens. Click "Dining Table" (object pin with stem). Press `M` to expand the map and click a spot to teleport. | "Rooms are floor polygons; objects are pins. Clicking selects and highlights the zone. The map lets you jump anywhere walkable." |
-| 1:25-2:05 | Press `/`. Type "sofa" (shows 3-Seater Sofa), clear, type a typo such as "kichen" (shows Kitchen), type "table" (Coffee Table and Dining Table). Use arrow keys, press Enter on one result to jump there. | "Search is fuzzy, Fuse.js over name, keywords, category and description, so typos still work. Results show distance from you. Enter jumps to the place; Shift+Enter or Go starts navigation." |
-| 2:05-3:00 | Press `/`, type "bedroom", Shift+Enter (or click Go). Show the glowing chevron ribbon on the floor, the HUD arrow, "Turn left in N m", remaining distance and ETA, and the route on the minimap. Walk manually with WASD along the ribbon. | "The route is computed by A* on a 5 cm occupancy grid, with obstacles inflated by a 25 cm body radius, eight-way movement without corner cutting, and a cost that keeps us centred in doorways. The path is smoothed, then drawn as a ribbon on the floor with turn-by-turn instructions." |
-| 3:00-3:25 | Deliberately walk off the route by more than 1.6 m; the HUD shows "re-routing" and the ribbon updates. Then press `F` for Auto-walk until "You have arrived". | "If we stray, the route is replanned from where we stand, in a Web Worker so rendering never stutters. Auto-walk follows the route to the destination." |
-| 3:25-3:50 | Press `X`. Start another navigation to "Kitchen Counter" from the far side of the apartment to show the path going around furniture and through the doorway (use the minimap). | "The path stays on the floor and goes around walls and furniture; it will not cut through them." |
-| 3:50-4:20 | Reload with `?admin`. Click "+ Add place", click a spot, type a name and keywords, Save. Draw a zone on the minimap and Finish. Click Export (shows `pois.json` download). | "For a new venue, admin mode lets non-developers add places, draw zones and export a pois.json that sits next to the scene. No code changes are needed." |
-| 4:20-4:40 | Switch to `?scene=incubation`, short walk. Show the repo README / folder tree briefly. | "Here is the real incubation-centre capture. It is a partial reconstruction, and we are annotating its POIs. Code, setup steps and the technical note are in the repository linked in the submission." |
+| 0:00-0:25 | Title card "Mayalok". Then a mock listing page of flat photos (any static image grid, or just the repo banner). | "A broker today sends a buyer or renter a folder of photos. Photos hide layout, distances and how rooms connect. Mayalok lets the buyer walk through the flat instead." |
+| 0:25-0:55 | Raw phone footage: clip from `capture_raw` (Video 1, 24 Oct incubation capture, e.g. 20261024_145628.mp4) for 5 s, then the house phone video for 5 s. Cut to the viewer loading each scene. | "This is how we capture: a normal smartphone walkthrough, no special hardware. Video 1 is our incubation-centre capture; the second is a house. We turn each into a 3D Gaussian Splat." |
+| 0:55-1:35 | `?scene=house`. Walk with WASD from the spawn. Look at the ceiling fan and window. Show minimap. | "This is our own house capture, reconstructed from phone video. It is an early reconstruction, so it has artefacts, and the scale is estimated from phone height, not measured. You still get a real sense of the space." |
+| 1:35-2:10 | `?scene=incubation`. Walk; click POI labels (Entrance, Meeting Table, Whiteboard). Press `/` and search "meeting". | "Here is Video 1, the incubation centre, partial: 65 of 293 keyframes registered. It already has POIs. Search is fuzzy, so a buyer can type what they want and jump there." |
+| 2:10-2:30 | If house POIs are placed by recording time: click a house POI (Ceiling Fan, Window). Otherwise skip this row. | "Broker-side, adding a place is a click: this is the house with places a buyer would ask about." |
+| 2:30-3:20 | `?scene=demo-apartment` (labelled synthetic). `/`, type "bedroom", Shift+Enter. Show floor ribbon, HUD turn instructions, minimap route. Walk off route to trigger re-route, then `F` auto-walk. | "Navigation is clearest on our synthetic test apartment because its floor plan is clean. A* on a 5 cm grid with a 25 cm body radius, drawn as a ribbon on the floor, re-planned if you stray." |
+| 3:20-3:45 | Reload with `?admin`. Add a place, draw a zone, Export (shows `pois.json`). | "A broker can label rooms and features without code and export a pois.json next to the scene." |
+| 3:45-4:15 | Back to the house or incubation walkthrough, then closing card with repo and live link. | "So instead of viewing photos, a buyer or renter explores the flat, finds rooms by search and gets walking directions. Capture is one phone video. Scale is estimated and our real scenes are still partial; improving reconstruction quality is the next step. Code and technical note are in the repository." |
 
-**Notes for recording**
-- Do not claim performance numbers on screen unless read live from the stats panel (`I`).
-- Confirm in a dry run that "bedroom" and "kichen" return the expected results with the current Fuse threshold (0.4); adjust the typed examples if not.
-- Keep narration factual: single-floor 2D grid, partial incubation scene (65 of 293 keyframes registered), scale from the phone-height assumption.
+## Pre-recording checklist
+- [ ] Confirm which build you record (local `npm run dev`/`dist` vs https://mayalok.vercel.app; live currently serves only incubation and demo-apartment, no house).
+- [ ] House retrain finished; reload `?scene=house`; check spawn view, no blank screen, walk 60 s without crash. Decide to include or drop rows 0:55-1:35 and 2:10-2:30.
+- [ ] House POIs placed in `?admin` from `pois.draft.json` and saved as `pois.json` (otherwise skip row 2:10).
+- [ ] `/` search tested on typed examples ("meeting", "bedroom", "kichen"); adjust if no match.
+- [ ] Admin > Reset clears saved local edits; help overlay dismissed (`H`).
+- [ ] Desktop Chrome/Edge, 1080p, 100% zoom, notifications off, bookmarks bar hidden, GPU/WebGL on.
+- [ ] Raw-footage clips trimmed; no faces, phone numbers or private info visible.
+- [ ] Mic check, quiet room, 20 s test recording and playback.
+- [ ] Full dry run with a timer; total 3 to 5 min.
+- [ ] Narration re-read against the truthfulness rules above.

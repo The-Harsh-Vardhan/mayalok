@@ -79,7 +79,8 @@ def _disk(radius_cells: int) -> np.ndarray:
 def build_navgrid(splats: Splats, cam_positions: np.ndarray, resolution: float = 0.05,
                   agent_radius: float = 0.25, obstacle_band: tuple[float, float] = (0.12, 1.9),
                   floor_band: float = 0.08, min_alpha: float = 0.2, min_obstacle_weight: float = 1.5,
-                  min_obstacle_cells: int = 4, path_free_radius: float = 0.3) -> tuple[NavGrid, dict]:
+                  min_obstacle_cells: int = 4, path_free_radius: float = 0.3,
+                  path_link_m: float = 0.0, keep_walked_regions: bool = False) -> tuple[NavGrid, dict]:
     m = splats.means
     alpha = splats.alpha()
     solid = alpha > min_alpha
@@ -121,6 +122,17 @@ def build_navgrid(splats: Splats, cam_positions: np.ndarray, resolution: float =
     r, c = grid.to_cell(cam_positions[:, 0], cam_positions[:, 2])
     ok = (r >= 0) & (r < rows) & (c >= 0) & (c < cols)
     walked[r[ok], c[ok]] = True
+    if path_link_m > 0:
+        # Join consecutive camera positions that are close (dropped/unregistered frames) so the
+        # walked path is a continuous line; larger jumps are SfM breaks and stay disconnected.
+        for a, b in zip(cam_positions[:-1], cam_positions[1:]):
+            dist = float(np.hypot(*(b[[0, 2]] - a[[0, 2]])))
+            if 0 < dist <= path_link_m:
+                t = np.linspace(0, 1, int(dist / resolution) + 2)[:, None]
+                pts = a + t * (b - a)
+                lr, lc = grid.to_cell(pts[:, 0], pts[:, 2])
+                good = (lr >= 0) & (lr < rows) & (lc >= 0) & (lc < cols)
+                walked[lr[good], lc[good]] = True
     path_cells = ndimage.binary_dilation(walked, structure=_disk(1))
     walked_free = ndimage.binary_dilation(walked, structure=_disk(int(round(path_free_radius / resolution))))
 
@@ -138,7 +150,11 @@ def build_navgrid(splats: Splats, cam_positions: np.ndarray, resolution: float =
     clearance = ndimage.distance_transform_edt(free).astype(np.float32) * resolution
     walkable = (clearance >= agent_radius) | (path_cells & free)
     labels, n = ndimage.label(walkable, structure=np.ones((3, 3)))
-    if n > 1:
+    if n > 1 and keep_walked_regions:
+        # Keep every region that contains part of the walked path (SfM may be fragmented).
+        hit = np.unique(labels[walked & walkable])
+        walkable = np.isin(labels, hit[hit > 0])
+    elif n > 1:
         sizes = ndimage.sum(walkable, labels, index=np.arange(1, n + 1))
         walkable = labels == (1 + int(np.argmax(sizes)))
 
@@ -150,6 +166,8 @@ def build_navgrid(splats: Splats, cam_positions: np.ndarray, resolution: float =
         "walkable_area_m2": round(float(walkable.sum()) * resolution ** 2, 2),
         "obstacle_cells": int(obstacle.sum()),
         "floor_cells": int(floor.sum()),
+        "walked_cells": int(walked.sum()),
+        "walked_cells_walkable": int((walked & walkable).sum()),
     }
     return grid, stats
 

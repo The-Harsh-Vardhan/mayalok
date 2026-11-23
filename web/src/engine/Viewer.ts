@@ -103,6 +103,9 @@ export class Viewer {
     await splat.initialized;
     // The pipeline already writes splats in the viewer's frame (+Y up, metres), so no flip.
     this.splat = splat;
+    // Optional viewer-side brightness: ?exposure=1.4 multiplies splat colour (1 = as trained).
+    const exposure = Number(new URLSearchParams(window.location.search).get("exposure"));
+    if (exposure > 0 && exposure !== 1) splat.recolor.setRGB(exposure, exposure, exposure);
     this.scene.add(splat);
   }
 
